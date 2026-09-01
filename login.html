@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Links Solutions Serviços</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Manchester City */
+            --sky-blue: #6CABDD;        /* Azul Celeste Principal */
+            --sky-blue-light: #EBF3F9;  /* Azul Celeste Claro */
+            --navy-city: #1C2C5B;       /* Azul Marinho do Escudo */
+            --white: #FFFFFF;
+            --bg-light: #F4F8FC;        /* Fundo geral leve */
+            --text-main: #1C2C5B;
+            --text-muted: #5A6A85;
+            --card-shadow: 0 15px 35px rgba(28, 44, 91, 0.08);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        /* Botão Voltar para Home (Posicionado na tela) */
+        .btn-back-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--navy-city);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            background: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(28, 44, 91, 0.08);
+            border: 1px solid rgba(108, 171, 221, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back-home:hover {
+            color: var(--sky-blue);
+            transform: translateX(-4px);
+            box-shadow: 0 6px 20px rgba(108, 171, 221, 0.2);
+        }
+
+        /* Container Principal do Card de Login */
+        .login-wrapper {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(108, 171, 221, 0.2);
+            width: 100%;
+            max-width: 950px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        /* Seção Esquerda: Formulário de Login */
+        .login-form-area {
+            padding: 3.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy-city);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .logo span {
+            color: var(--sky-blue);
+        }
+
+        .login-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--navy-city);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--navy-city);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(108, 171, 221, 0.3);
+            background: var(--bg-light);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--sky-blue);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(108, 171, 221, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.8rem;
+            font-size: 0.85rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .remember-me input {
+            accent-color: var(--sky-blue);
+            width: 16px;
+            height: 16px;
+        }
+
+        .forgot-password {
+            color: var(--sky-blue);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .forgot-password:hover {
+            color: var(--navy-city);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sky-blue), #5198D1);
+            color: var(--white);
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(108, 171, 221, 0.4);
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(108, 171, 221, 0.5);
+            background: linear-gradient(135deg, #5198D1, var(--navy-city));
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.8rem;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .register-link a {
+            color: var(--sky-blue);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            color: var(--navy-city);
+        }
+
+        /* Seção Direita: Painel Informativo/Visual */
+        .login-banner-area {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--navy-city) 100%);
+            padding: 3.5rem 2.5rem;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .banner-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+
+        .banner-content p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .banner-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .banner-features li {
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .banner-footer {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Reponsividade */
+        @media (max-width: 850px) {
+            .btn-back-home {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1rem;
+                align-self: flex-start;
+            }
+
+            body {
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+            }
+
+            .login-banner-area {
+                display: none;
+            }
+
+            .login-form-area {
+                padding: 2.5rem 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão Superior para Voltar ao Index -->
+    <a href="index.html" class="btn-back-home">
+        &larr; Voltar ao Início
+    </a>
+
+    <div class="login-wrapper">
+        <!-- Lado Esquerdo: Formulário de Login -->
+        <div class="login-form-area">
+            <a href="index.html" class="logo">Links<span>Solutions</span></a>
+
+            <div class="login-header">
+                <h1>Acesse sua conta</h1>
+                <p>Gerencie seus contratos, propostas e simulações</p>
+            </div>
+
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label for="email">E-mail ou CPF</label>
+                    <input type="text" id="email" placeholder="Digite seu e-mail ou CPF" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Senha de Acesso</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox"> Lembrar acesso
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn-primary">Entrar no Sistema</button>
+            </form>
+
+            <div class="register-link">
+                Ainda não tem uma conta? <a href="index.html#servicos">Simule agora e cadastre-se</a>
+            </div>
+        </div>
+
+        <!-- Lado Direito: Painel Destaque -->
+        <div class="login-banner-area">
+            <div class="banner-content">
+                <h2>Soluções Financeiras na Palma da Sua Mão</h2>
+                <p>Acompanhe suas consignações, solicite margens e tenha transparência total do seu crédito.</p>
+
+                <ul class="banner-features">
+                    <li>✓ Acompanhamento em tempo real</li>
+                    <li>✓ Assinatura de contratos 100% digital</li>
+                    <li>✓ Atendimento rápido e protegido</li>
+                </ul>
+            </div>
+
+            <div class="banner-footer">
+                🔒 Ambiente 100% Seguro e Criptografado
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
